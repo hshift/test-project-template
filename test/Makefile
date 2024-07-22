@@ -1,0 +1,50 @@
+## Variables to help building absolute paths
+
+MAKEFILE_DIR=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+
+PROJECT_DIR=$(realpath $(MAKEFILE_DIR)..)
+
+TEST_DIR=$(PROJECT_DIR)/test
+
+CPPUTEST_HOME=$(TEST_DIR)/cpputest
+
+# -------------------- Source files paths -----------------------
+# project source files path
+SRC_DIRS=$(PROJECT_DIR)
+
+# project header files path
+INCLUDE_DIRS=$(PROJECT_DIR)
+INCLUDE_DIRS+=$(TEST_DIR)/include
+
+# add this to avoid problems when including cpputest headers on test files
+INCLUDE_DIRS+=$(CPPUTEST_HOME)/include
+
+## specify where the test code is located
+TEST_SRC_DIRS=$(TEST_DIR)
+
+## what to call the test binary
+TEST_TARGET=test_template
+
+# Add the library linking to your Makefile
+LD_LIBRARIES += -L$(CPPUTEST_HOME)/lib -lCppUTestExt
+
+# Mock paths
+MOCKS_SRC_DIRS=$(TEST_DIR)/mocks
+
+#run MakefileWorker.mk with the variables defined here
+include $(CPPUTEST_HOME)/build/MakefileWorker.mk
+
+.PHONY: run
+run: start $(TEST_TARGET)
+	$(RUN_TEST_TARGET)
+
+.PHONY: check_paths
+check_paths:
+		@echo "\nRepository dir\t" $(REPOSITORY_DIR)
+		@echo "\nTest dir\t" $(TEST_DIR)
+		@echo "\nMakefile dir\t" $(MAKEFILE_DIR)
+		@echo "\nProject dir\t" $(PROJECT_DIR)
+		@echo "\nSrc dir  \t" $(SRC_DIR)
+		@echo "\nSrc dirs  \t" $(SRC_DIRS)
+		@echo "\nInclude dirs  \t" $(INCLUDE_DIRS)
+		@echo "\nCpputest home  \t" $(CPPUTEST_HOME)
