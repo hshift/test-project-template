@@ -6,7 +6,7 @@ PROJECT_DIR=$(realpath $(MAKEFILE_DIR)..)
 
 TEST_DIR=$(PROJECT_DIR)/test
 
-CPPUTEST_HOME=$(TEST_DIR)/cpputest
+CPPUTEST_HOME=$(PROJECT_DIR)/cpputest
 
 # -------------------- Source files paths -----------------------
 # project source files path

@@ -1,6 +1,9 @@
 # test-project-template
 Template repository for creating new C project that needs to be tested
 
+**Make sure to change every occurrence of test_template in files for a new
+project **
+
 ## Test Driven Development
 This template is designed with Test Driven Development (TDD) in mind. For this
 git repo CppUTest project is added as a submodule. Sub-dir Test contains this
@@ -17,7 +20,7 @@ platform and install them:
 
 To compile CppUTest issue following:
 ```C
-cd Test/cpputest
+cd cpputest
 ./autogen.sh
 ./configure
 make
@@ -29,3 +32,13 @@ As as result there should be two files in `\lib` folder `libCppUTest.a` and  `li
 ```bash
 git config --global diff.ignoreSubmodules dirty
 ```
+
+## Executing tests
+
+After installation of CppUTest tests can be executed by issuing:
+
+```bash
+make -C test
+```
+
+in project directory.
