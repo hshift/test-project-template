@@ -2,14 +2,14 @@
 
 TEST_GROUP(dummy_test){
 
-  void setup(){
+    void setup(){
 
-  }
+    }
 
-  void teardown(){}
+    void teardown(){}
 
 };
 
 TEST(dummy_test, pass_me) {
-  CHECK_EQUAL(1, 1);
+    CHECK_EQUAL(1, 1);
 }
